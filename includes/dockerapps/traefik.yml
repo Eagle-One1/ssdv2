@@ -159,7 +159,7 @@
       set_fact:
         command:
           - --global.checkNewVersion=true
-          - --global.sendAnonymousUsage=true
+          - --global.sendAnonymousUsage=false
           - --entryPoints.http.address=:80
           - --entryPoints.https.address=:443
           - --entryPoints.traefik.address=:8080
@@ -193,9 +193,9 @@
         image: traefik:v2.4
         pull: yes
         published_ports:
-          - "80:80"
-          - "443:443"
-          - "8080:8080"
+          - "127.0.0.1:8000:80"
+          - "127.0.0.1:8443:443"
+          - "127.0.0.1:8080:8080"
         command: '{{command}}'
         security_opts:
           - no-new-privileges:true
